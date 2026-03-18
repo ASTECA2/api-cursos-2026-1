@@ -39,6 +39,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(tokenKey);
             return JWT.require(algorithm)
             .withIssuer("FATEC API")
+            .build()
             .verify(token)
             .getSubject();
         } catch (JWTVerificationException e) {
