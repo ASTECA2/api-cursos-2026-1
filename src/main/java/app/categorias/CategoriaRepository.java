@@ -1,4 +1,4 @@
-package app.repository;
+package app.categorias;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

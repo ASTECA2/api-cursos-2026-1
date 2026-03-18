@@ -1,4 +1,4 @@
-package app.services;
+package app.categorias;
 
 import org.springframework.stereotype.Service;
 
@@ -11,14 +11,14 @@ import org.springframework.http.HttpStatus;
 @Service
 public class CategoriaService {
     @Autowired
-    private CategoriaRepository CategoriaRepo;
+    private CategoriaRepository categoriaRepo;
 
     public Iterable<CategoriaDTO> findAll(){
-        return CategoriaRepo.findAll().stream().map(CategoriaDTO::new).toList();
+        return categoriaRepo.findAll().stream().map(CategoriaDTO::new).toList();
     }
 
     public CategoriaDTO findOne(long id) {
-        Optional<Categoria> resultado = CategoriaRepo.findById(id);
+        Optional<Categoria> resultado = categoriaRepo.findById(id);
 
         if(resultado.isEmpty()) {
             throw new ResponseStatusException(
@@ -32,11 +32,11 @@ public class CategoriaService {
     public CategoriaDTO insert(CategoriaInsertDTO dados) {
         Categoria Categoria = new Categoria();
         Categoria.setNome(dados.nome());
-        return new CategoriaDTO(CategoriaRepo.save(Categoria));
+        return new CategoriaDTO(categoriaRepo.save(Categoria));
     }
 
     public CategoriaDTO update(long id, CategoriaInsertDTO dados) {
-        Optional<Categoria> resultado = CategoriaRepo.findById(id);
+        Optional<Categoria> resultado = categoriaRepo.findById(id);
 
         if(resultado.isEmpty()) {
             throw new ResponseStatusException(
@@ -45,15 +45,15 @@ public class CategoriaService {
         }
 
         resultado.get().setNome(dados.nome());
-        return new CategoriaDTO(CategoriaRepo.save(resultado.get()));
+        return new CategoriaDTO(categoriaRepo.save(resultado.get()));
     }
 
     public void delete(long id) {
-        if(!CategoriaRepo.existsById(id)) {
+        if(!categoriaRepo.existsById(id)) {
             throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Categoria não encontrada"
             );
         }
-        CategoriaRepo.deleteById(id);
+        categoriaRepo.deleteById(id);
     }
 }
