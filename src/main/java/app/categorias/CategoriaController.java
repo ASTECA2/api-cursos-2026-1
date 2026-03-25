@@ -23,6 +23,7 @@ public class CategoriaController {
 
     @GetMapping
     public Iterable<CategoriaDTO> list() {
+        System.out.println("----GET----");
         return categoriaService.findAll();
     }
 
