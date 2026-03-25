@@ -44,10 +44,15 @@ public class SecurityFilter extends OncePerRequestFilter {
                 String subject = tokenService.getSubject(token);
                 UserDetails usuario = userDataService.loadUserByUsername(subject);
 
-                UsernamePasswordAuthenticationToken authentication = 
+                UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
                         usuario, null, usuario.getAuthorities());
+                    
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("AUTENTICADO");
+                System.out.println("AUTORIDADES: " + usuario.getAuthorities());
+            } else {
+                System.out.println("SEM TOKEN");
             }
 
             filterChain.doFilter(request, response);

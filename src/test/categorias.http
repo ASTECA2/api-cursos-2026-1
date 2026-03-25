@@ -1,6 +1,8 @@
-@url = http://127.0.0.1:8080/categorias
+@url = http://localhost:8080/categorias
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJGQVRFQyBBUEkiLCJzdWIiOiJhZG1pbiIsImV4cCI6MTc3NDQ3Njk1OH0.HuVkkOeQHeggzCGzmd3m05HzRP38fH1hCYR04o7pKXE
 
 GET {{url}}
+Authorization: Bearer {{token}}
 
 ###
 POST {{url}}
